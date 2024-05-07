@@ -307,9 +307,6 @@ def attach(request, session_id):
 @csrf_exempt
 @ajax_only
 def delete_upload(request, session_id, upload_id):
-    if not request.user.has_perm('attachments.delete_upload'):
-        raise Http404()
-
     session = get_object_or_404(Session, uuid=session_id)
     upload = get_object_or_404(session.uploads, pk=upload_id)
     file_name = upload.file_name
